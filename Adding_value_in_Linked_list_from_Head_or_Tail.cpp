@@ -40,41 +40,42 @@ int main() {
         print = print->next;
     }
     cout<<endl;
-    bool flag;
-    cout<<"Enter '0' if you want to add from Head in Linked List "
+    if(Head != NULL){
+        bool flag;
+        cout<<"Enter '0' if you want to add from Head in Linked List "
           "and Enter '1' if you want to add from Tail in Linked List:"<<endl;
-    cin>>flag;
-    if (flag==false) {
-        int input=0;
-        cout<<"Enter the number of values you want to add:"<<endl;
-        cin>>input;
-        for (int i=0;i<input;i++) {
-            int value=0;
+        cin>>flag;
+        if (flag==false) {
+            int input=0;
+            cout<<"Enter the number of values you want to add:"<<endl;
+            cin>>input;
+            for (int i=0;i<input;i++) {
+                int value=0;
+                cout<<"Enter value:"<<endl;
+                cin>>value;
+                Node *temp = new Node(value);
+                temp->next = Head;
+                Head = temp;
+            }
+        }
+        else {
+            int input=0;
             cout<<"Enter value:"<<endl;
-            cin>>value;
-            Node *temp = new Node(value);
-            temp->next = Head;
-            Head = temp;
+            cin>>input;
+            for (int i=0;i<input;i++) {
+                int value=0;
+                cout<<"Enter value:"<<endl;
+                cin>>value;
+                Tail->next = new Node(value);
+                Tail = Tail->next;
+            }
+        }
+        print = Head;
+        while (print) {
+            cout<<print->data<<" ";
+            print = print->next;
         }
     }
-    else {
-        int input=0;
-        cout<<"Enter value:"<<endl;
-        cin>>input;
-        for (int i=0;i<input;i++) {
-            int value=0;
-            cout<<"Enter value:"<<endl;
-            cin>>value;
-            Tail->next = new Node(value);
-            Tail = Tail->next;
-        }
-    }
-
-    print = Head;
-    while (print) {
-        cout<<print->data<<" ";
-        print = print->next;
-    }
-
+    delete Tail;
     delete Head;
 }
