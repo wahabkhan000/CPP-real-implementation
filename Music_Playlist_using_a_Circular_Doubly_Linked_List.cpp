@@ -152,7 +152,7 @@ int main() {
     Node *traverse = Head;
     int move = -1;
     pause();
-    while (move!= 0) {
+    while (true) {
         int key = 0;
         do {
             if (key == 0) {
@@ -255,7 +255,6 @@ int main() {
             if (move == 9) {
                 cout<<"Please enter the song name you want to rename:"<<endl;
             }
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline(cin,search_song);
             pause();
             Node *search = Head;
@@ -274,11 +273,12 @@ int main() {
                         "Duration : "<<search->Duration<<endl;
                 }
                 if (move == 8) {
+                    traverse = search;
                     cout<<"Song Found\n\n"
                         "The current song is:\n"
-                        "Song : "<<search->Song_name<<"\n"
-                        "Artist : "<<search->Artist<<"\n"
-                        "Duration : "<<search->Duration<<endl;
+                        "Song : "<<traverse->Song_name<<"\n"
+                        "Artist : "<<traverse->Artist<<"\n"
+                        "Duration : "<<traverse->Duration<<endl;
                 }
                 if (move == 9) {
                     traverse = search;
