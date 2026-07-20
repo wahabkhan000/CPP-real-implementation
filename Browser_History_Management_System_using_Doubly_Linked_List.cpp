@@ -23,20 +23,6 @@ void read_page_details(Node *&traverse) {
     cout<<"Enter Visit_Time of Page:"<<endl;
     std::getline(cin,traverse->page_detail.Visit_Time);
 }
-void get_length(int &length) {
-    int key = 0;
-    do {
-        if (key == 0) {
-            cout<<"Enter the total number of pages you want to visit:"<<endl;
-        }
-        else {
-            cout<<"\aInvalid Input! Please enter the correct number above 0."<<endl;
-        }
-        cin>>length;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        key = 1;
-    }while (length<1);
-}
 void new_page_visit(Node *&Tail) {
     Node *temp = new Node();
     read_page_details(temp);
@@ -44,18 +30,16 @@ void new_page_visit(Node *&Tail) {
     temp->prev = Tail;
     Tail = temp;
 }
-void page_visit(Node *&Head, Node *&Tail, int length) {
-    for (int i=0;i<length;i++) {
-        if (Head == nullptr) {
-            cout<<"Enter details of Page No. "<<i+1<<":"<<endl;
-            Head = new Node();
-            read_page_details(Head);
-            Tail = Head;
-        }
-        else {
-            cout<<"Enter details of Page No. "<<i+1<<":"<<endl;
-            new_page_visit(Tail);
-        }
+void page_visit(Node *&Head, Node *&Tail) {
+    if (Head == nullptr) {
+        cout<<"Enter details of Page you want to visit: "<<endl;
+        Head = new Node();
+        read_page_details(Head);
+        Tail = Head;
+    }
+    else {
+        cout<<"Enter details of Page you want to visit: "<<endl;
+        new_page_visit(Tail);
     }
 }
 void menu() {
@@ -112,9 +96,7 @@ void current_page(Node *&traverse) {
 int main() {
     Node *Head = nullptr;
     Node *Tail = Head;
-    int length = 0;
-    get_length(length);
-    page_visit(Head,Tail,length);
+    page_visit(Head,Tail);
     Node *traverse = Head;
     while (true) {
         int move = -1;
